@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static src.functions.echo.echoCommand;
+import static src.functions.type.typeCommand;
 
 public class shell {
 
@@ -28,6 +29,9 @@ public class shell {
             switch (command) {
                 case "echo":
                     echoCommand(commandArgs);
+                    break;
+                case "type":
+                    typeCommand(commandArgs);
                     break;
                 default:
                     System.out.println(command + ": command not found");
