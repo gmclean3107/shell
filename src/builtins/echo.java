@@ -1,4 +1,4 @@
-package src.functions;
+package src.builtins;
 
 public class echo {
     public static void echoCommand(String input) {

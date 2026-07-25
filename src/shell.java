@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static src.functions.echo.echoCommand;
-import static src.functions.type.typeCommand;
+import static src.builtins.echo.echoCommand;
+import static src.builtins.type.typeCommand;
 
 public class shell {
 
