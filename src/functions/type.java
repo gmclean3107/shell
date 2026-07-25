@@ -25,6 +25,7 @@ public class type {
         File folder = new File("src/functions");
         File[] files = folder.listFiles();
 
+        assert files != null;
         for (File file : files) {
             String name = file.getName();
             int dot = name.lastIndexOf(".");
