@@ -5,7 +5,9 @@ import java.io.File;
 public class cd {
     public static void cdCommand(String input) {
 
-        if (input.substring(0,2).matches("^[A-Z]:$")) {
+        if (input.startsWith("~")){
+            home(input);
+        } else if (input.substring(0,2).matches("^[A-Z]:$")) {
             absolute(input);
         } else if (input.startsWith("../")) {
             previous(input);
@@ -74,6 +76,20 @@ public class cd {
 
         if (directory.exists()) {
             System.setProperty("user.dir", path);
+        } else {
+            System.out.println("cd: " + input + ": No such file or directory");
+        }
+    }
+
+    private static void home(String input) {
+        String homePath = System.getProperty("user.home");
+        input = input.replace("~", homePath);
+        input = input.replace("/", "\\");
+
+        File directory = new File(input);
+
+        if (directory.exists()) {
+            System.setProperty("user.dir", input);
         } else {
             System.out.println("cd: " + input + ": No such file or directory");
         }
