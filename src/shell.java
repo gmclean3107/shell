@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static src.builtins.cd.cdCommand;
 import static src.builtins.echo.echoCommand;
 import static src.builtins.pwd.pwdCommand;
 import static src.builtins.type.typeCommand;
@@ -39,6 +40,9 @@ public class shell {
                     break;
                 case "pwd":
                     pwdCommand();
+                    break;
+                case "cd":
+                    cdCommand(commandArgs);
                     break;
                 default:
                     ExecuteResult result = ExecuteFileCommand(command, commandArgs.split(" "));
