@@ -9,7 +9,7 @@ public class cd {
         if (directory.exists()) {
             System.setProperty("user.dir", input);
         } else {
-            System.out.println("Could not find path: " + input);
+            System.out.println("cd: " + input + ": No such file or directory");
         }
     }
 }
