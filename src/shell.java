@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static src.builtins.echo.echoCommand;
+import static src.builtins.pwd.pwdCommand;
 import static src.builtins.type.typeCommand;
 import static src.helpers.ExecuteFile.ExecuteFileCommand;
 
@@ -35,6 +36,9 @@ public class shell {
                     break;
                 case "type":
                     typeCommand(commandArgs);
+                    break;
+                case "pwd":
+                    pwdCommand();
                     break;
                 default:
                     ExecuteResult result = ExecuteFileCommand(command, commandArgs.split(" "));
