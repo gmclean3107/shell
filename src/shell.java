@@ -1,11 +1,14 @@
 package src;
 
+import src.enums.ExecuteResult;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static src.builtins.echo.echoCommand;
 import static src.builtins.type.typeCommand;
+import static src.helpers.ExecuteFile.ExecuteFileCommand;
 
 public class shell {
 
@@ -34,7 +37,10 @@ public class shell {
                     typeCommand(commandArgs);
                     break;
                 default:
-                    System.out.println(command + ": command not found");
+                    ExecuteResult result = ExecuteFileCommand(command, commandArgs.split(" "));
+                    if (result == ExecuteResult.NOT_FOUND) {
+                        System.out.println(command + ": command not found");
+                    }
                     break;
             }
 
