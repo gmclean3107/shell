@@ -11,6 +11,7 @@ import static src.builtins.echo.echoCommand;
 import static src.builtins.pwd.pwdCommand;
 import static src.builtins.type.typeCommand;
 import static src.helpers.ExecuteFile.ExecuteFileCommand;
+import static src.helpers.HelperFunctions.parseCommand;
 
 public class shell {
 
@@ -26,26 +27,26 @@ public class shell {
             }
 
             //Separate command and arguments
-            List<String> splitInput = new ArrayList<>(List.of(input.split(" ")));
-            String command = splitInput.removeFirst().toLowerCase();
-            String commandArgs = String.join(" ", splitInput);
+            List<String> commandArgs = parseCommand(input);
+            String command = commandArgs.removeFirst();
 
             //Command selector
             switch (command) {
                 case "echo":
-                    echoCommand(commandArgs);
+                    echoCommand(String.join(" ", commandArgs));
                     break;
                 case "type":
-                    typeCommand(commandArgs);
+                    typeCommand(String.join(" ", commandArgs));
                     break;
                 case "pwd":
                     pwdCommand();
                     break;
                 case "cd":
-                    cdCommand(commandArgs);
+                    cdCommand(String.join(" ", commandArgs));
                     break;
                 default:
-                    ExecuteResult result = ExecuteFileCommand(command, commandArgs.split(" "));
+                    String[] arguments = commandArgs.toArray(new String[0]);
+                    ExecuteResult result = ExecuteFileCommand(command, arguments);
                     if (result == ExecuteResult.NOT_FOUND) {
                         System.out.println(command + ": command not found");
                     }
