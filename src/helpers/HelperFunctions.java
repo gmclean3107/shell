@@ -37,6 +37,8 @@ public class HelperFunctions {
 
         boolean inSingleQuote = false;
         boolean inDoubleQuote = false;
+        boolean isEscaped = false;
+        boolean isSpecial = false;
 
         for (char c : input.toCharArray()) {
 
@@ -50,14 +52,29 @@ public class HelperFunctions {
                 continue;
             }
 
+            //Placeholder
+            if (c == '$') {
+                isSpecial = !isSpecial;
+                continue;
+            }
+
+            if (c == '\\') {
+                isEscaped = true;
+                continue;
+            }
+
             if (Character.isWhitespace(c) && !inSingleQuote && !inDoubleQuote) {
                 if (!current.isEmpty()) {
                     tokens.add(current.toString());
                     current.setLength(0);
                 }
-            } else {
+            } else if (isEscaped || !isSpecial){
                 current.append(c);
+            } else {
+                System.out.println("Handle special character");
             }
+            isEscaped = false;
+            isSpecial = false;
         }
 
         if (!current.isEmpty()) {
