@@ -71,7 +71,7 @@ public class HelperFunctions {
             } else if (isEscaped || !isSpecial){
                 current.append(c);
             } else {
-                System.out.println("Handle special character");
+                //TODO: Implement handling for special characters
             }
             isEscaped = false;
             isSpecial = false;
