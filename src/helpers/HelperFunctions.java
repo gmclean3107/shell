@@ -58,7 +58,7 @@ public class HelperFunctions {
                 continue;
             }
 
-            if (c == '\\') {
+            if (c == '\\' && !inSingleQuote && !inDoubleQuote) {
                 isEscaped = true;
                 continue;
             }
@@ -69,6 +69,8 @@ public class HelperFunctions {
                     current.setLength(0);
                 }
             } else if (isEscaped || !isSpecial){
+                current.append(c);
+            } else if (inSingleQuote || inDoubleQuote) {
                 current.append(c);
             } else {
                 //TODO: Implement handling for special characters

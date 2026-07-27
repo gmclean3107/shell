@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static src.builtins.cat.catCommand;
 import static src.builtins.cd.cdCommand;
 import static src.builtins.echo.echoCommand;
 import static src.builtins.pwd.pwdCommand;
@@ -43,6 +44,9 @@ public class shell {
                     break;
                 case "cd":
                     cdCommand(String.join(" ", commandArgs));
+                    break;
+                case "cat":
+                    catCommand(commandArgs);
                     break;
                 default:
                     String[] arguments = commandArgs.toArray(new String[0]);
